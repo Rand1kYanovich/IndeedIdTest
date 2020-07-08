@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">IdeentyIdTest</string>
+
+    <!-- SignChoice -->
+    <string name="fragment_sign_choice_sign_in">Войти</string>
+    <string name="fragment_sign_choice_sign_up">Зарегестрироваться</string>
+    <string name="fragment_sign_choice_title">Вход/Регистрация</string>
+
+    <!-- SignIn -->
+    <string name="fragment_sign_in_login">Логин</string>
+    <string name="fragment_sign_in_password">Пароль</string>
+    <string name="fragment_sign_in_btn">Войти</string>
+    <string name="fragment_sign_in_title">Вход</string>
+
+    <!-- SignUp -->
+    <string name="fragment_sign_up_promt">Для продолжения регистрации отсканируйте данные</string>
+
+    <!-- Home -->
+    <string name="home_menu_server">Сервер</string>
+    <string name="home_menu_local">База данных</string>
+    <string name="fragment_saved_photo_empty_text">Пока здесь пусто.Сохраните\nфото, чтобы здесь что то появилось)</string>
 </resources>
