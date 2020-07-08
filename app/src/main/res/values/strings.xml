@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">IdeentyIdTest</string>
+    <string name="keystore_alias">userPassword</string>
+
+    <!-- Error -->
+    <string name="user_exist_error">Такой пользователь существует</string>
 
     <!-- SignChoice -->
     <string name="fragment_sign_choice_sign_in">Войти</string>
@@ -18,5 +22,5 @@
     <!-- Home -->
     <string name="home_menu_server">Сервер</string>
     <string name="home_menu_local">База данных</string>
-    <string name="fragment_saved_photo_empty_text">Пока здесь пусто.Сохраните\nфото, чтобы здесь что то появилось)</string>
+    <string name="fragment_saved_photo_empty_text">Пока здесь пусто.Лайкните\nфото, чтобы здесь что-то появилось.</string>
 </resources>

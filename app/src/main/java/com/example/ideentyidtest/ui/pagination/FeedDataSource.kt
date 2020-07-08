@@ -3,14 +3,14 @@ package com.example.ideentyidtest.ui.pagination
 import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
 import com.example.ideentyidtest.entity.core.feed.ImageItem
-import com.example.ideentyidtest.model.interactor.FeedInteractor
+import com.example.ideentyidtest.model.interactor.photo.PhotoInteractor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class FeedDataSource(
-    private val feedInteractor: FeedInteractor,
+    private val photoInteractor: PhotoInteractor,
     private val coroutineScope: CoroutineScope
 ) : PageKeyedDataSource<Int, ImageItem>() {
     override fun loadInitial(
@@ -18,7 +18,7 @@ class FeedDataSource(
         callback: LoadInitialCallback<Int, ImageItem>
     ) {
         coroutineScope.launch {
-            val listImages = feedInteractor.getImages(0)
+            val listImages = photoInteractor.getImages(0)
             withContext(Dispatchers.Main) {
                 callback.onResult(listImages, null, 1)
             }
@@ -27,7 +27,7 @@ class FeedDataSource(
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, ImageItem>) {
         coroutineScope.launch {
-            val listImages = feedInteractor.getImages(params.key)
+            val listImages = photoInteractor.getImages(params.key)
             withContext(Dispatchers.Main) {
                 callback.onResult(listImages, params.key + 1)
             }
@@ -36,7 +36,7 @@ class FeedDataSource(
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, ImageItem>) {
         coroutineScope.launch {
-            val listImages = feedInteractor.getImages(params.key)
+            val listImages = photoInteractor.getImages(params.key)
             withContext(Dispatchers.Main) {
                 callback.onResult(listImages, params.key - 1)
             }
@@ -44,11 +44,11 @@ class FeedDataSource(
     }
 
     class Factory(
-        private val feedInteractor: FeedInteractor,
+        private val photoInteractor: PhotoInteractor,
         private val coroutineScope: CoroutineScope
     ) : DataSource.Factory<Int, ImageItem>() {
         override fun create(): DataSource<Int, ImageItem> {
-            return FeedDataSource(feedInteractor, coroutineScope)
+            return FeedDataSource(photoInteractor, coroutineScope)
         }
     }
 }

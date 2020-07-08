@@ -1,9 +1,11 @@
-package com.example.ideentyidtest.model.repository.feed
+package com.example.ideentyidtest.model.repository.photo
 
+import com.example.ideentyidtest.entity.core.feed.Photo
 import com.example.ideentyidtest.model.repository.BaseRepository
 import com.example.ideentyidtest.model.server.ImgurApi
+import com.example.ideentyidtest.model.storage.AppDatabase
 
-class FeedRepository(private val api: ImgurApi) : BaseRepository() {
+class PhotoRepository(private val api: ImgurApi, private val db: AppDatabase) : BaseRepository() {
     /**
      * Get images from network request
      *
@@ -30,4 +32,23 @@ class FeedRepository(private val api: ImgurApi) : BaseRepository() {
      */
     suspend fun getComments(id: String) =
         apiCall { api.getComments(id) }
+
+    /**
+     * Get all saved photo from database
+     */
+    suspend fun getSavedImages() = db.photoDao().getAllPhoto()
+
+    /**
+     * Delete photo from database
+     *
+     * @param photo - deleted photo
+     */
+    suspend fun deleteImage(photo: Photo) = db.photoDao().deletePhoto(photo)
+
+    /**
+     * Insert photo from database
+     *
+     * @param photo - inserted photo
+     */
+    suspend fun insertImage(photo: Photo) = db.photoDao().insertPhoto(photo)
 }
