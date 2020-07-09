@@ -18,22 +18,6 @@ class PhotoRepository(private val api: ImgurApi, private val db: AppDatabase) : 
         apiCall { api.getGalleryImages(page, showViral, mature, albumPreviews) }
 
     /**
-     * Get detail info about current image from network request
-     *
-     * @param id - image hash
-     */
-    suspend fun getDetailImage(id: String) =
-        apiCall { api.getDetailImage(id) }
-
-    /**
-     * Get best comments from network request
-     *
-     * @param id - image hash
-     */
-    suspend fun getComments(id: String) =
-        apiCall { api.getComments(id) }
-
-    /**
      * Get all saved photo from database
      */
     suspend fun getSavedImages() = db.photoDao().getAllPhoto()

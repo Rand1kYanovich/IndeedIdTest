@@ -4,6 +4,8 @@
 
     <!-- Error -->
     <string name="user_exist_error">Такой пользователь существует</string>
+    <string name="user_not_exist_error">Пользователя не существует</string>
+    <string name="user_not_verified">Неправильно введены данные</string>
 
     <!-- SignChoice -->
     <string name="fragment_sign_choice_sign_in">Войти</string>

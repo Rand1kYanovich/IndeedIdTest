@@ -1,18 +1,16 @@
 package com.example.ideentyidtest.ui.list.feed
 
-import android.content.res.ColorStateList
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.ideentyidtest.R
 import com.example.ideentyidtest.entity.core.feed.ImageItem
-import com.example.ideentyidtest.entity.core.feed.Photo
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegate
 import kotlinx.android.synthetic.main.rv_feed_item.view.*
 
 private val set = ConstraintSet()
 
-fun feedAdapterDelegate(onHearClick: (ImageItem) -> Unit) =
+fun feedAdapterDelegate(onHeartClick: (ImageItem) -> Unit) =
     adapterDelegate<ImageItem, ImageItem>(R.layout.rv_feed_item) {
 
 
@@ -44,7 +42,7 @@ fun feedAdapterDelegate(onHearClick: (ImageItem) -> Unit) =
                     if (!item.isLiked) {
                         item.isLiked = true
                         ivLike.setColorFilter(ContextCompat.getColor(context, R.color.red))
-                        onHearClick(item)
+                        onHeartClick(item)
                     }
                 }
             }

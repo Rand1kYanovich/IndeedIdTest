@@ -13,7 +13,7 @@ import com.example.ideentyidtest.model.repository.photo.PhotoRepository
 class PhotoInteractor(private val photoRepository: PhotoRepository) {
 
     /**
-     * Get and map images from @[PhotoRepository]
+     * Get,search liked and map images from @[PhotoRepository]
      *
      * @param page - the data paging number
      * @param showViral - Show or hide viral images from the user section
@@ -25,25 +25,16 @@ class PhotoInteractor(private val photoRepository: PhotoRepository) {
         showViral: Boolean = true,
         mature: Boolean = false,
         albumPreviews: Boolean = false
-    ) =
-        photoRepository.getImages(page, showViral, mature, albumPreviews).map {
+    ): List<ImageItem> {
+        val list = photoRepository.getImages(page, showViral, mature, albumPreviews).map {
             it.toImageItem()
         }
-
-
-    /**
-     * Get and map detail image from @[PhotoRepository]
-     *
-     * @param id - image hash
-     */
-    suspend fun getDetailImage(id: String) = photoRepository.getDetailImage(id).toImageItem()
-
-    /**
-     * Get and map best comments from @[PhotoRepository]
-     *
-     * @param id - image hash
-     */
-    suspend fun getBestComments(id: String) = photoRepository.getComments(id)
+        list.forEach { item ->
+            item.isLiked =
+                photoRepository.getSavedImages().any { it.link == item.link }
+        }
+        return list
+    }
 
     /**
      * Get saved images from @[PhotoRepository]
@@ -63,5 +54,6 @@ class PhotoInteractor(private val photoRepository: PhotoRepository) {
      *
      * @param imageItem - inserted image item
      */
-    suspend fun insertImage(imageItem: ImageItem) = photoRepository.insertImage(imageItem.toPhoto())
+    suspend fun insertImage(imageItem: ImageItem) =
+        photoRepository.insertImage(imageItem.toPhoto())
 }

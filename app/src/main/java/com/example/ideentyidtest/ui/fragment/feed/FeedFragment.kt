@@ -18,12 +18,13 @@ class FeedFragment : BaseFragment() {
 
     private val adapter: FeedRVAdapter by lazy {
         FeedRVAdapter {
-            viewModel.onHearBtnClick(it)
+            viewModel.onHeartBtnClick(it)
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
         rvFeed.layoutManager = layoutManager

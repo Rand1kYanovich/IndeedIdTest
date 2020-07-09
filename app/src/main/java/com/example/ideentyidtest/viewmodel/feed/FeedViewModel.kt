@@ -37,7 +37,7 @@ class FeedViewModel : BaseViewModel(), KoinComponent {
         }
     }
 
-    fun onHearBtnClick(imageItem: ImageItem) {
+    fun onHeartBtnClick(imageItem: ImageItem) {
         coroutineScope.launch {
             interactor.insertImage(imageItem)
         }

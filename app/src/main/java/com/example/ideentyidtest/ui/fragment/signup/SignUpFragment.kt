@@ -1,6 +1,7 @@
 package com.example.ideentyidtest.ui.fragment.signup
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.security.keystore.KeyProperties
@@ -14,11 +15,14 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.ideentyidtest.R
 import com.example.ideentyidtest.ui.BaseFragment
+import com.example.ideentyidtest.ui.fragment.signchoice.SignChoiceFragment
 import com.example.ideentyidtest.viewmodel.signup.SignUpViewModel
 import com.google.zxing.integration.android.IntentIntegrator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.io.InputStream
+import java.lang.Exception
 import java.security.Key
 import java.security.KeyStore
 import javax.crypto.KeyGenerator
@@ -33,6 +37,7 @@ class SignUpFragment : BaseFragment() {
     private var password = ""
 
     private val viewModel: SignUpViewModel by viewModel()
+    private val ks = KeyStore.getInstance(KeyStore.getDefaultType())
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,16 +57,27 @@ class SignUpFragment : BaseFragment() {
 
         viewModel.isUserExist.observe(viewLifecycleOwner, Observer {
             if (it) {
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.user_exist_error),
-                    Toast.LENGTH_SHORT
-                ).show()
+                showToast(R.string.user_exist_error)
+                findNavController().popBackStack()
             } else {
+                try {
+                    val ios = FileInputStream("${requireContext().filesDir}/keystore.keystore")
+                    ks.load(ios, getString(R.string.app_name).toCharArray())
+                } catch (e: Exception) {
+                    ks.load(null, getString(R.string.app_name).toCharArray())
+                }
+                val protParam = KeyStore.PasswordProtection(login.toCharArray())
+                val secretKey = SecretKeySpec(password.toByteArray(), "PKCS12")
+                val skEntry = KeyStore.SecretKeyEntry(secretKey)
+                ks.setEntry(getString(R.string.keystore_alias), skEntry, protParam)
+
+                val fos = FileOutputStream("${requireContext().filesDir}/keystore.keystore")
+                ks.store(fos, getString(R.string.app_name).toCharArray())
                 findNavController().navigate(R.id.action_signUpFragment_to_homeFragment)
             }
         })
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result =
