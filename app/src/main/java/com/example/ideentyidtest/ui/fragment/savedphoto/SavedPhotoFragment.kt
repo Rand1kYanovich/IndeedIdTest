@@ -5,7 +5,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ideentyidtest.ui.BaseFragment
+import com.example.ideentyidtest.ui.fragment.BaseFragment
 import com.example.ideentyidtest.R
 import com.example.ideentyidtest.entity.core.feed.Photo
 import com.example.ideentyidtest.ui.list.savedphoto.savedPhotoAdapterDelegate

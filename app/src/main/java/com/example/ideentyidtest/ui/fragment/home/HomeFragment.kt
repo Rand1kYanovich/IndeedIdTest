@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.example.ideentyidtest.ui.BaseFragment
+import com.example.ideentyidtest.ui.fragment.BaseFragment
 import com.example.ideentyidtest.R
 import kotlinx.android.synthetic.main.fragment_home.*
 

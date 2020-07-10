@@ -1,7 +1,6 @@
 package com.example.ideentyidtest.di
 
 import android.content.Context
-import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.ideentyidtest.BuildConfig.BASE_URL
 import com.example.ideentyidtest.model.server.ImgurApi
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -25,7 +24,6 @@ fun provideDefaultOkhttpClient(contex: Context): OkHttpClient.Builder {
 
             return@addInterceptor chain.proceed(newBuilder.build())
         }
-        .addInterceptor(ChuckerInterceptor(contex))
         .readTimeout(90, TimeUnit.SECONDS)
         .connectTimeout(90, TimeUnit.SECONDS)
 }

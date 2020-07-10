@@ -1,4 +1,4 @@
-package com.example.ideentyidtest.ui
+package com.example.ideentyidtest.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,3 +1,6 @@
+ext {
+    keystore = '/Users/daniil/StudioProjects/IdeentyIdTest/app/keystore.jks'
+}
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
@@ -11,6 +14,14 @@ apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+    signingConfigs {
+        config {
+            storeFile file(keystore)
+            storePassword '123321'
+            keyAlias 'upload'
+            keyPassword '123123'
+        }
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
@@ -23,6 +34,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -40,7 +53,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
+
     }
 }
 
@@ -90,9 +105,9 @@ dependencies {
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofit_coroutines_version"
 
     //Okhttp3
-    def okhttp3_version = "3.12.0"
-    implementation "com.squareup.okhttp3:okhttp:4.4.0"
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
+    def okhttp3_version = "4.4.0"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
 
     //UI
     def glide_version = '4.11.0'
@@ -104,6 +119,7 @@ dependencies {
     releaseImplementation "com.github.ChuckerTeam.Chucker:library-no-op:$chucker_version"
 
     //QrScanner
+    
     implementation('com.journeyapps:zxing-android-embedded:3.6.0') { transitive = false }
     implementation 'com.google.zxing:core:3.3.0'
 }

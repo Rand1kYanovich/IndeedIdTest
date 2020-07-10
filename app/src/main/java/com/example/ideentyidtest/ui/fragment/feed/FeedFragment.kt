@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.ideentyidtest.R
-import com.example.ideentyidtest.ui.BaseFragment
+import com.example.ideentyidtest.ui.fragment.BaseFragment
 import com.example.ideentyidtest.ui.list.feed.FeedRVAdapter
 import com.example.ideentyidtest.viewmodel.feed.FeedViewModel
 import kotlinx.android.synthetic.main.fragment_feed.*

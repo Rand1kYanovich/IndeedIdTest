@@ -1,18 +1,15 @@
 package com.example.ideentyidtest.ui.fragment.signin
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.ideentyidtest.ui.BaseFragment
+import com.example.ideentyidtest.ui.fragment.BaseFragment
 import com.example.ideentyidtest.R
 import com.example.ideentyidtest.viewmodel.signin.SignInViewModel
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.FileInputStream
 import java.lang.Exception
-import java.security.Key
 import java.security.KeyStore
 import javax.crypto.spec.SecretKeySpec
 

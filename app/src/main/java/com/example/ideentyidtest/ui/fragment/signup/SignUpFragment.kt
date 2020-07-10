@@ -1,32 +1,23 @@
 package com.example.ideentyidtest.ui.fragment.signup
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.security.keystore.KeyProperties
 import android.util.Base64
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.ideentyidtest.R
-import com.example.ideentyidtest.ui.BaseFragment
-import com.example.ideentyidtest.ui.fragment.signchoice.SignChoiceFragment
+import com.example.ideentyidtest.ui.fragment.BaseFragment
 import com.example.ideentyidtest.viewmodel.signup.SignUpViewModel
 import com.google.zxing.integration.android.IntentIntegrator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.FileInputStream
 import java.io.FileOutputStream
-import java.io.InputStream
 import java.lang.Exception
-import java.security.Key
 import java.security.KeyStore
-import javax.crypto.KeyGenerator
-import javax.crypto.SecretKey
 import javax.crypto.spec.SecretKeySpec
 
 
